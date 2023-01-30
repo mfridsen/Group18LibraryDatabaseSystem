@@ -1,0 +1,61 @@
+books table: This table will store information about books,
+such as the title,
+ISBN,
+publication date,
+number of pages,
+and an image of the cover.
+It should also have a foreign key linking it to the authors table, as a book can have multiple authors.
+
+DVDS
+dvds table: This table will store information about DVDs,
+such as the title,
+ISBN,
+release date,
+runtime,
+and an image of the cover.
+It should also have a foreign key linking it to the genres table, as a DVD can belong to multiple genres.
+
+AUTHORS
+For a library or bookstore database, the following information about authors may be relevant to have:
+Name: The author's full name, including first and last name.
+Birthdate: The author's birthdate.
+Description: A brief biography of the author, including their background, education, and notable works.
+
+
+PUBLISHERS
+For a library or bookstore database, the following information about publishers may be relevant to have:
+Name: The name of the publisher, for example, "Penguin Books" or "HarperCollins Publishers".
+Address: The physical address of the publisher, including the street, city, state/province, and country.
+Phone number: The publisher's contact phone number.
+Email: The publisher's contact email address.
+Website: The publisher's website URL.
+Description: A brief description of the publisher, such as the types of books they publish, the number of books they
+produce each year, the history of the publisher, and so on.
+Founded date: The date the publisher was founded.
+
+
+PATRONS
+patrons table: This table will store information about library patrons,
+such as the name,
+address,
+phone number,
+and email address.
+
+CHECKOUTS
+checkouts table: This table will store information about items that have been checked out,
+such as the patron ID,
+the item ID (book or DVD),
+the checkout date,
+and the due date.
+
+GENRES
+genres table: This table will store information about genres,
+such as the name
+and a brief description
+
+REVIEWS
+reviews table: This table will store information about reviews,
+such as the patron ID,
+the item ID (book or DVD),
+the review text,
+and rating.
