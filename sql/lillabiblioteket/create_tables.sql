@@ -1,3 +1,5 @@
+-- Creates all tables
+
 -- Base Tables
 
 -- publisher

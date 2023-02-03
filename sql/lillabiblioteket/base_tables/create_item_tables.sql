@@ -29,12 +29,12 @@ VALUES ('Standard Literature', 8),
 CREATE TABLE `Item` (
   `Item_ID` INT AUTO_INCREMENT NOT NULL,
   `Title` VARCHAR(255) NOT NULL,
-  `ISBN` VARCHAR(13) UNIQUE NOT NULL,
-  `Barcode` VARCHAR(255) NOT NULL,
+  `ISBN` VARCHAR(13) NOT NULL,
+  `Barcode` VARCHAR(255) UNIQUE NOT NULL,
   `Location` VARCHAR(255),
   `Description` TEXT,
   `Item_Type_ID` INT NOT NULL,
-  `Item_Status` ENUM ('Available', 'Reserved', 'Check Out', 'Overdue') NOT NULL,
+  `Item_Status` ENUM ('Available', 'Reserved', 'Checked Out', 'Overdue') NOT NULL,
   PRIMARY KEY (`Item_ID`),
   FOREIGN KEY (`Item_Type_ID`) REFERENCES `Item_Type`(`Item_Type_ID`)
  );
