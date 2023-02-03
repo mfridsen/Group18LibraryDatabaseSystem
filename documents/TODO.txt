@@ -1,0 +1,11 @@
+//TODO Finish Database model
+
+//TODO Fill with Test Data
+
+//TODO Create Routines for SCRUB etc
+
+//TODO Create Triggers for DB
+
+//TODO Create CLI to access and manipulate database
+
+//TODO Create GUI for same reason
