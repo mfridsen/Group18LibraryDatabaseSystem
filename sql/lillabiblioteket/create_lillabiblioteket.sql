@@ -9,5 +9,6 @@ create database lillabiblioteket;
 use lillabiblioteket;
 
 source "G:\Dropbox\Projects\Java\Group18LibraryDatabaseSystem\sql\lillabiblioteket\create_tables.sql";
+source "G:\Dropbox\Projects\Java\Group18LibraryDatabaseSystem\sql\lillabiblioteket\fill_test_data.sql";
 
 show tables;
