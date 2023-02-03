@@ -1,3 +1,5 @@
+--  Different categories of items have different loan periods. Standard books are allowed a loan period of 2 months,
+--  Course literature a period of 1 month, Reference literature cannot be borrowed, DVDs have a loan period of 2 weeks.
 CREATE TABLE `Item_Type` (
   `Type_ID` INT AUTO_INCREMENT,
   `Type` VARCHAR(255),
