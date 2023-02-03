@@ -1,6 +1,9 @@
 //TODO Finish Database model
+    //TODO Update/merge Item with Item_Type, create ENUMs for Item_Type and Item_Status
 
 //TODO Fill with Test Data
+    //TODO Users
+    //TODO Items
 
 //TODO Create Routines for SCRUB etc
 
@@ -9,3 +12,7 @@
 //TODO Create CLI to access and manipulate database
 
 //TODO Create GUI for same reason
+
+
+
+//TODO
