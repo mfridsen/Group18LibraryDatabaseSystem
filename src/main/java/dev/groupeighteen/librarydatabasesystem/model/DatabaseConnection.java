@@ -3,7 +3,9 @@ package dev.groupeighteen.librarydatabasesystem.model;
 import dev.groupeighteen.librarydatabasesystem.BookBorrowingDataBaseSystem;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 import java.sql.*;
 
 /**
@@ -32,7 +34,7 @@ public class DatabaseConnection {
     private static Connection connection = null;
 
     /**
-     This method connects the Java application to a database.
+     This method connects the Java application to a specific database.
      It loads the JDBC driver, and then establishes a connection to the database
      using the provided url, user, and password parameters. If there are any
      errors connecting to the database, the method will throw a
@@ -42,6 +44,44 @@ public class DatabaseConnection {
      @param password the password to use when connecting to the database
      */
     public static void connectToDataBase(String url, String user, String password) {
+        try {
+            // Load the JDBC driver
+            System.out.println("Loading JDBC driver...");
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            System.out.println("Loaded JDBC driver.");
+
+            // Establish a connection
+            System.out.println("Connecting to: " + user + "@" + url);
+            connection = DriverManager.getConnection(url,
+                    user, password);
+            System.out.println("Connected to: " + user + "@" + url);
+
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+            BookBorrowingDataBaseSystem.exit("Couldn't connect to database.", 1);
+        }
+    }
+
+    /**
+     * Standard connection-method for a default-configured MySQL Server. Connects to the server,
+     * not a specific database.
+     *
+     * Connects with the following parameters:
+     * user: root
+     * password: password
+     * server: localhost
+     * port: 3306
+     *
+     * Loads the JDBC driver, and then establishes a connection to the database
+     * using the provided url, user, and password parameters. If there are any
+     * errors connecting to the database, the method will throw a
+     * ClassNotFoundException or SQLException.
+     */
+    public static void connectToMySQLServer() {
+        String url = "jdbc:mysql://localhost:3306";
+        String user = "root";
+        String password = "password";
+
         try {
             // Load the JDBC driver
             System.out.println("Loading JDBC driver...");
@@ -82,7 +122,7 @@ public class DatabaseConnection {
             Statement statement = connection.createStatement();
 
             // Execute a query
-            System.out.println("Running query " + query + ":");
+            System.out.println("Running query: " + query);
             ResultSet resultSet = statement.executeQuery(query);
 
             // Iterate through the result set and print the data
@@ -96,12 +136,68 @@ public class DatabaseConnection {
     }
 
     /**
+     * Executes a single SQL command.
+     * Note that this method assumes that the connection variable has been properly initialized,
+     * and is of type java.sql.Connection.
+     * Also, this method does not check for any syntax errors in the SQL commands,
+     * so it may fail with a SQLException if there are any.
+     *
+     * Doesn't print any results, simply executes command.
+     */
+    public static void executeSingleSQLCommand(String command) {
+        System.out.println("Attempting to execute: " + command + " ...");
+        Statement statement;
+        try {
+            statement = connection.createStatement();
+            statement.execute(command);
+            statement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            BookBorrowingDataBaseSystem.exit("Error executing SQL command: " + command, 1);
+        }
+    }
+
+    /**
+     * A simple method which reads the contents of a file, and executes any SQL commands it finds in that file
+     * @param filePath the path of the file
+     */
+    public static void executeSqlCommandsFromFile(String filePath) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            StringBuilder commandBuilder = new StringBuilder();
+
+            while ((line = reader.readLine()) != null) {
+                // Skip comments
+                if (line.startsWith("--")) {
+                    continue;
+                }
+                // Append the line to the command string, adding a space in between
+                commandBuilder.append(line).append(" ");
+
+                // Check if the line ends with a semicolon, signifying the end of the command
+                if (line.endsWith(";")) {
+                    String command = commandBuilder.toString();
+                    executeSingleSQLCommand(command);
+                    // Reset the command builder for the next command
+                    commandBuilder = new StringBuilder();
+                }
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            BookBorrowingDataBaseSystem.exit("Couldn't find file at path " + filePath, 1);
+        } catch (IOException e) {
+            e.printStackTrace();
+            BookBorrowingDataBaseSystem.exit("Couldn't read file at path " + filePath, 1);
+        }
+    }
+
+    /**
      * The executeSQLFile method takes a Connection object and a file path as input. It reads the file line by line
      * and if a line starts with "source", it calls the executeSQLFile method again with the file path specified in
      * the line. For other lines, it appends the line to a string buffer. If a line ends with a semicolon, it executes
      * the SQL statement contained in the buffer.
      */
-    public static void executeSQLFile(Connection connection, String filePath) throws Exception {
+    public static void executeSQLFileRecursively(Connection connection, String filePath) throws Exception {
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;
             StringBuilder sb = new StringBuilder();
@@ -116,7 +212,7 @@ public class DatabaseConnection {
                     }
                 } else {
                     String sourceFilePath = line.split(" ")[1].replace("\"", "");
-                    executeSQLFile(connection, sourceFilePath);
+                    executeSQLFileRecursively(connection, sourceFilePath);
                 }
             }
         }

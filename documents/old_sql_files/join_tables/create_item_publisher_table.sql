@@ -1,4 +1,4 @@
-CREATE TABLE `Book_Publisher` (
+CREATE TABLE `Item_Publisher` (
   `Publisher_ID` INT,
   `Item_ID` INT,
   PRIMARY KEY (`Publisher_ID`, `Item_ID`),

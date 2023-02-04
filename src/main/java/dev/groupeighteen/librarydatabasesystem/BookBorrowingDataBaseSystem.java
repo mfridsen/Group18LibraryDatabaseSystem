@@ -6,16 +6,36 @@ public class BookBorrowingDataBaseSystem {
     private static final String haxxorPath =
         "sql/lillabiblioteket/create_lillabiblioteket.sql";
 
-    public static void main(String[] args) throws Exception {
-        DatabaseConnection.connectToDataBase("jdbc:mysql://localhost:3306/lillabiblioteket",
-                "root", "password");
+    public static void main(String[] args) {
+        //DatabaseConnection.connectToDataBase("jdbc:mysql://localhost:3306/lillabiblioteket",
+          //      "root", "password");
+
+        //Connect
+        DatabaseConnection.connectToMySQLServer();
 
         //Trying to create the database while still using the same "script"
         //DatabaseConnection.executeSQLFile(DatabaseConnection.getConnection(), haxxorPath);
 
-        DatabaseConnection.executeQuery("SHOW TABLES");
+        setupDatabase();
         DatabaseConnection.closeConnectionToDatabase();
         exit(0);
+    }
+
+    public static void setupDatabase() {
+        //Delete DB if already exists
+        DatabaseConnection.executeSingleSQLCommand("drop database if exists lillabiblioteket;");
+        //Create DB
+        DatabaseConnection.executeSingleSQLCommand("create database lillabiblioteket;");
+        //Show DBs
+        DatabaseConnection.executeQuery("SHOW DATABASES;");
+        //Use DB
+        DatabaseConnection.executeSingleSQLCommand("use lillabiblioteket");
+        //Create tables
+        DatabaseConnection.executeSqlCommandsFromFile("sql/lillabiblioteket/create_tables.sql");
+        //Fill with test data
+        //TODO testdata
+        //Fill tables with test data
+        DatabaseConnection.executeQuery("SHOW TABLES");
     }
 
     public static void exit(int status) {
