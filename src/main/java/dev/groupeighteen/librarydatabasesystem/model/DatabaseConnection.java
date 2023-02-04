@@ -145,7 +145,7 @@ public class DatabaseConnection {
      * Doesn't print any results, simply executes command.
      */
     public static void executeSingleSQLCommand(String command) {
-        System.out.println("Attempting to execute: " + command + " ...");
+        System.out.println("Attempting to execute: " + command);
         Statement statement;
         try {
             statement = connection.createStatement();
@@ -155,6 +155,7 @@ public class DatabaseConnection {
             e.printStackTrace();
             BookBorrowingDataBaseSystem.exit("Error executing SQL command: " + command, 1);
         }
+        System.out.println("Command successful.");
     }
 
     /**
@@ -188,33 +189,6 @@ public class DatabaseConnection {
         } catch (IOException e) {
             e.printStackTrace();
             BookBorrowingDataBaseSystem.exit("Couldn't read file at path " + filePath, 1);
-        }
-    }
-
-    /**
-     * The executeSQLFile method takes a Connection object and a file path as input. It reads the file line by line
-     * and if a line starts with "source", it calls the executeSQLFile method again with the file path specified in
-     * the line. For other lines, it appends the line to a string buffer. If a line ends with a semicolon, it executes
-     * the SQL statement contained in the buffer.
-     */
-    public static void executeSQLFileRecursively(Connection connection, String filePath) throws Exception {
-        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
-            String line;
-            StringBuilder sb = new StringBuilder();
-            while ((line = br.readLine()) != null) {
-                if (!line.startsWith("source")) {
-                    sb.append(line);
-                    if (line.endsWith(";")) {
-                        try (Statement stmt = connection.createStatement()) {
-                            stmt.execute(sb.toString());
-                            sb.setLength(0);
-                        }
-                    }
-                } else {
-                    String sourceFilePath = line.split(" ")[1].replace("\"", "");
-                    executeSQLFileRecursively(connection, sourceFilePath);
-                }
-            }
         }
     }
 

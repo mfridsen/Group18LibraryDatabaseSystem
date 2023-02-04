@@ -1,4 +1,4 @@
--- Creates all tables in the database
+-- Creates all tables in the database ----------------------------------------------------------------------------------
 
 -- BASE TABLES ---------------------------------------------------------------------------------------------------------
 
@@ -49,9 +49,9 @@ CREATE TABLE `Patron` (
     FOREIGN KEY (`Patron_ID`) REFERENCES `User` (`User_ID`),
     FOREIGN KEY (`Patron_Type_ID`) REFERENCES `Patron_Type` (`Patron_Type_ID`)
 );
---  Each user has a maximum number of items allowed to be on loan at a specific point in time.
---  The limit is dependent on the category of the member, e.g. researchers can borrow as many as 20 items,
---  teachers are limited to 10, and students are limited to 5 items
+-- Each user has a maximum number of items allowed to be on loan at a specific point in time.
+-- The limit is dependent on the category of the member, e.g. researchers can borrow as many as 20 items,
+-- teachers are limited to 10, and students are limited to 5 items
 INSERT INTO `Patron_Type` (`Patron_Type`, `Max_Items`)
 VALUES ('Student', 5),
        ('Teacher', 10),
