@@ -12,6 +12,16 @@ import java.io.InputStream;
  * @date 2/3/2023
  */
 public class OutputHandlerTest {
+    private static final String outputHandlerTest = """
+            ---------------------------
+                Output Handler Test    \s
+            ---------------------------\s
+            """;
+
+    static {
+        System.out.println(outputHandlerTest);
+    }
+
     private final InputStream systemIn = System.in;
 
     /**
