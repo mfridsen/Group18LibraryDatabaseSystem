@@ -172,6 +172,11 @@ public class DatabaseConnection {
      * and goes to the next line for each row.
      */
     public static void printAllData(String tableName) {
+        if (tableName.length() == 0) {
+            System.out.println("ERROR: printAllData: No table given.");
+            return;
+        }
+
         System.out.println("Printing all data found in table: " + tableName);
         try {
             Statement statement = connection.createStatement();

@@ -47,27 +47,39 @@ public class BookBorrowingDataBaseSystem {
         DatabaseConnection.printAllData("USER");
         //Patrons
         DatabaseConnection.executeSqlCommandsFromFile("");
+        DatabaseConnection.printAllData("");
         //Staffs
         DatabaseConnection.executeSqlCommandsFromFile("");
+        DatabaseConnection.printAllData("");
         //Classifications
         DatabaseConnection.executeSqlCommandsFromFile("");
+        DatabaseConnection.printAllData("");
         //Items
         DatabaseConnection.executeSqlCommandsFromFile("");
+        DatabaseConnection.printAllData("");
         //Reservations
         DatabaseConnection.executeSqlCommandsFromFile("");
+        DatabaseConnection.printAllData("");
         //Authors
         DatabaseConnection.executeSqlCommandsFromFile("");
+        DatabaseConnection.printAllData("");
         //Checkouts
         DatabaseConnection.executeSqlCommandsFromFile("");
+        DatabaseConnection.printAllData("");
+
         //JOIN TABLES
         //Item_Publisher
         DatabaseConnection.executeSqlCommandsFromFile("");
+        DatabaseConnection.printAllData("");
         //Item_Author
         DatabaseConnection.executeSqlCommandsFromFile("");
+        DatabaseConnection.printAllData("");
         //Item_Checkout
         DatabaseConnection.executeSqlCommandsFromFile("");
+        DatabaseConnection.printAllData("");
         //Item_Classification
         DatabaseConnection.executeSqlCommandsFromFile("");
+        DatabaseConnection.printAllData("");
     }
 
     public static void exit(int status) {
