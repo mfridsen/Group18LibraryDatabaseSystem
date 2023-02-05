@@ -1,12 +1,39 @@
 package dev.groupeighteen.librarydatabasesystem;
 
 import dev.groupeighteen.librarydatabasesystem.model.DatabaseConnection;
+import dev.groupeighteen.librarydatabasesystem.model.DatabaseHandler;
+
+import java.sql.Connection;
 
 public class BookBorrowingDataBaseSystem {
+    private static Connection connection;
+
+    //Makes the code prettier
+    private static final String publisherTestDataPath =
+            "sql/lillabiblioteket/test_data/base_tables/publisher_test_data.sql";
+    private static final String userTestDataPath =
+            "sql/lillabiblioteket/test_data/base_tables/user_test_data.sql";
+    private static final String classificationTestDataPath =
+            "sql/lillabiblioteket/test_data/base_tables/classification_test_data.sql";
+    private static final String itemTestDataPath =
+            "sql/lillabiblioteket/test_data/base_tables/item_test_data.sql";
+    private static final String authorTestDataPath =
+            "sql/lillabiblioteket/test_data/base_tables/author_test_data.sql";
+    private static final String itemPublisherTestDataPath =
+            "";
+    private static final String itemAuthorTestDataPath =
+            "sql/lillabiblioteket/test_data/join_tables/item_author_test_data.sql";
+    private static final String itemCheckoutTestDataPath =
+            "";
+    private static final String itemClassificationTestDataPath =
+            "";
+    
     public static void main(String[] args) {
         //Connect
         DatabaseConnection.connectToMySQLServer();
+        connection = DatabaseConnection.getConnection();
 
+        //Setup and fill database
         setupDatabase();
         fillTables();
 
@@ -21,17 +48,17 @@ public class BookBorrowingDataBaseSystem {
      */
     private static void setupDatabase() {
         //Delete DB if already exists
-        DatabaseConnection.executeSingleSQLCommand("drop database if exists lillabiblioteket;");
+        DatabaseHandler.executeSingleSQLCommand(connection, "drop database if exists lillabiblioteket;");
         //Create DB
-        DatabaseConnection.executeSingleSQLCommand("create database lillabiblioteket;");
+        DatabaseHandler.executeSingleSQLCommand(connection, "create database lillabiblioteket;");
         //Show DBs in server
-        DatabaseConnection.executeQuery("SHOW DATABASES;");
+        DatabaseHandler.executeQuery(connection, "SHOW DATABASES;");
         //Use DB
-        DatabaseConnection.executeSingleSQLCommand("use lillabiblioteket");
+        DatabaseHandler.executeSingleSQLCommand(connection, "use lillabiblioteket");
         //Create tables
-        DatabaseConnection.executeSqlCommandsFromFile("sql/lillabiblioteket/create_tables.sql");
+        DatabaseHandler.executeSqlCommandsFromFile(connection, "sql/lillabiblioteket/create_tables.sql");
 
-        DatabaseConnection.executeQuery("SHOW TABLES");
+        DatabaseHandler.executeQuery(connection, "SHOW TABLES");
     }
 
     /**
@@ -40,57 +67,57 @@ public class BookBorrowingDataBaseSystem {
     private static void fillTables() {
         //BASE TABLES
         //Publishers
-        DatabaseConnection.executeSqlCommandsFromFile("sql/lillabiblioteket/test_data/publisher_test_data.sql");
-        DatabaseConnection.printAllData("PUBLISHER");
+        DatabaseHandler.executeSqlCommandsFromFile(connection, publisherTestDataPath);
+        DatabaseHandler.printAllData(connection, "PUBLISHER");
         //Users
-        DatabaseConnection.executeSqlCommandsFromFile("sql/lillabiblioteket/test_data/user_test_data.sql");
-        DatabaseConnection.printAllData("USER");
+        DatabaseHandler.executeSqlCommandsFromFile(connection, userTestDataPath);
+        DatabaseHandler.printAllData(connection, "USER");
         //Patrons
-        DatabaseConnection.executeSqlCommandsFromFile("");
-        DatabaseConnection.printAllData("");
+        DatabaseHandler.executeSqlCommandsFromFile(connection, "");
+        DatabaseHandler.printAllData(connection, "");
         //Staffs
-        DatabaseConnection.executeSqlCommandsFromFile("");
-        DatabaseConnection.printAllData("");
+        DatabaseHandler.executeSqlCommandsFromFile(connection, "");
+        DatabaseHandler.printAllData(connection, "");
         //Classifications
-        DatabaseConnection.executeSqlCommandsFromFile("");
-        DatabaseConnection.printAllData("");
+        DatabaseHandler.executeSqlCommandsFromFile(connection, classificationTestDataPath);
+        DatabaseHandler.printAllData(connection, "CLASSIFICATION");
         //Items
-        DatabaseConnection.executeSqlCommandsFromFile("");
-        DatabaseConnection.printAllData("");
+        DatabaseHandler.executeSqlCommandsFromFile(connection, itemTestDataPath);
+        DatabaseHandler.printAllData(connection, "ITEM");
         //Reservations
-        DatabaseConnection.executeSqlCommandsFromFile("");
-        DatabaseConnection.printAllData("");
+        DatabaseHandler.executeSqlCommandsFromFile(connection, "");
+        DatabaseHandler.printAllData(connection, "");
         //Authors
-        DatabaseConnection.executeSqlCommandsFromFile("");
-        DatabaseConnection.printAllData("");
+        DatabaseHandler.executeSqlCommandsFromFile(connection, authorTestDataPath);
+        DatabaseHandler.printAllData(connection, "AUTHOR");
         //Checkouts
-        DatabaseConnection.executeSqlCommandsFromFile("");
-        DatabaseConnection.printAllData("");
+        DatabaseHandler.executeSqlCommandsFromFile(connection, "");
+        DatabaseHandler.printAllData(connection, "");
 
         //JOIN TABLES
         //Item_Publisher
-        DatabaseConnection.executeSqlCommandsFromFile("");
-        DatabaseConnection.printAllData("");
+        DatabaseHandler.executeSqlCommandsFromFile(connection, "");
+        DatabaseHandler.printAllData(connection, "");
         //Item_Author
-        DatabaseConnection.executeSqlCommandsFromFile("");
-        DatabaseConnection.printAllData("");
+        DatabaseHandler.executeSqlCommandsFromFile(connection, itemAuthorTestDataPath);
+        DatabaseHandler.printAllData(connection, "ITEM_AUTHOR");
         //Item_Checkout
-        DatabaseConnection.executeSqlCommandsFromFile("");
-        DatabaseConnection.printAllData("");
+        DatabaseHandler.executeSqlCommandsFromFile(connection, "");
+        DatabaseHandler.printAllData(connection, "");
         //Item_Classification
-        DatabaseConnection.executeSqlCommandsFromFile("");
-        DatabaseConnection.printAllData("");
+        DatabaseHandler.executeSqlCommandsFromFile(connection, "");
+        DatabaseHandler.printAllData(connection, "");
     }
 
     public static void exit(int status) {
-        if (DatabaseConnection.getConnection() == null) { //Should always close connection to the database after use
+        if (connection == null) { //Should always close connection to the database after use
             DatabaseConnection.closeConnectionToDatabase();
         }
         System.exit(status);
     }
 
     public static void exit(String errorMsg, int status) {
-        if (DatabaseConnection.getConnection() == null) { //Should always close connection to the database after use
+        if (connection == null) { //Should always close connection to the database after use
             DatabaseConnection.closeConnectionToDatabase();
         }
         System.out.println(errorMsg);

@@ -6,15 +6,8 @@
 CREATE TABLE `Publisher` (
   `Publisher_ID` INT AUTO_INCREMENT PRIMARY KEY,
   `Publisher_Name` VARCHAR(255) NOT NULL,
-  `Street_Num` INT,
-  `Street_Name` VARCHAR(255),
-  `Town` VARCHAR(255),
-  `Zip_Code` VARCHAR(255),
-  `Country` VARCHAR(255),
-  `Phone_Num` VARCHAR(255),
-  `Mail` VARCHAR(255) UNIQUE,
-  `Website` VARCHAR(255),
-  `Date_Founded` DATE,
+  `Phone_Num` VARCHAR(255) NOT NULL,
+  `Mail` VARCHAR(255) NOT NULL,
   `Description` TEXT
 );
 
@@ -27,13 +20,11 @@ CREATE TABLE `User` (
     `Last_Name` VARCHAR(255) NOT NULL,
     `Phone_Num` VARCHAR(255) NOT NULL,
     `Mail` VARCHAR(255) NOT NULL,
-    `Street_Num` INT,
-    `Street_Name` VARCHAR(255) ,
-    `Town` VARCHAR(255) ,
-    `Zip_Code` VARCHAR(255) ,
     `Date_Created` DATE NOT NULL,
+    `User_Type` ENUM('Patron', 'Staff', 'Patron_and_Staff') NOT NULL,
     PRIMARY KEY (`User_ID`)
 );
+
 -- Patron Stuff
 CREATE TABLE `Patron_Type` (
     `Patron_Type_ID` INT AUTO_INCREMENT NOT NULL,
@@ -56,6 +47,7 @@ INSERT INTO `Patron_Type` (`Patron_Type`, `Max_Items`)
 VALUES ('Student', 5),
        ('Teacher', 10),
        ('Researcher', 20);
+
 -- Staff Stuff
 CREATE TABLE `Staff_Type` (
     `Staff_Type_ID` INT AUTO_INCREMENT NOT NULL,
@@ -97,19 +89,6 @@ CREATE TABLE `Classification` (
 
 --  Different categories of items have different loan periods. Standard books are allowed a loan period of 2 months,
 --  Course literature a period of 1 month, Reference literature cannot be borrowed, DVDs have a loan period of 2 weeks.
-CREATE TABLE `Item_Type` (
-  `Item_Type_ID` INT AUTO_INCREMENT NOT NULL,
-  `Item_Type` ENUM ('Standard Literature', 'Course Literature', 'Reference Literature', 'DVD') NOT NULL,
-  `Rent_Time_Weeks` INT NOT NULL,
-  PRIMARY KEY (`Item_Type_ID`)
-);
-
-INSERT INTO `Item_Type` (`Item_Type`, `Rent_Time_Weeks`)
-VALUES ('Standard Literature', 8),
-       ('Course Literature', 4),
-       ('Reference Literature', 0),
-       ('DVD', 2);
-
 CREATE TABLE `Item` (
   `Item_ID` INT AUTO_INCREMENT NOT NULL,
   `Title` VARCHAR(255) NOT NULL,
@@ -117,11 +96,11 @@ CREATE TABLE `Item` (
   `Barcode` VARCHAR(255) UNIQUE NOT NULL,
   `Location` VARCHAR(255),
   `Description` TEXT,
-  `Item_Type_ID` INT NOT NULL,
+  `Item_Type` ENUM ('Standard Literature', 'Course Literature', 'Reference Literature', 'DVD') NOT NULL,
+  `Rent_Time_Weeks` INT NOT NULL,
   `Item_Status` ENUM ('Available', 'Reserved', 'Checked Out', 'Overdue') NOT NULL,
-  PRIMARY KEY (`Item_ID`),
-  FOREIGN KEY (`Item_Type_ID`) REFERENCES `Item_Type`(`Item_Type_ID`)
- );
+  PRIMARY KEY (`Item_ID`)
+);
 
 -- RESERVATION ---------------------------------------------------------------------------------------------------------
 CREATE TABLE `Reservation` (
@@ -135,7 +114,7 @@ CREATE TABLE `Reservation` (
 -- AUTHOR --------------------------------------------------------------------------------------------------------------
 CREATE TABLE `Author` (
   `Author_ID` INT AUTO_INCREMENT,
-  `Sur_Name` VARCHAR(255) NOT NULL,
+  `First_Name` VARCHAR(255) NOT NULL,
   `Last_Name` VARCHAR(255) NOT NULL,
   `Date_of_Birth` DATE,
   `Description` TEXT,
