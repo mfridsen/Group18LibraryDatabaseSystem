@@ -14,30 +14,27 @@
 --  Different categories of items have different loan periods. Standard books are allowed a loan period of 2 months,
 --  Course literature a period of 1 month, Reference literature cannot be borrowed, DVDs have a loan period of 2 weeks.
 CREATE TABLE `Item_Type` (
-  `Type_ID` INT AUTO_INCREMENT,
-  `Type` VARCHAR(255),
-  `Rent_Time_Allowed` INT,
-  PRIMARY KEY (`Type_ID`)
+  `Item_Type_ID` INT AUTO_INCREMENT NOT NULL,
+  `Item_Type` ENUM ('Standard Literature', 'Course Literature', 'Reference Literature', 'DVD') NOT NULL,
+  `Rent_Time_Weeks` INT NOT NULL,
+  PRIMARY KEY (`Item_Type_ID`)
 );
+
+INSERT INTO `Item_Type` (`Item_Type`, `Rent_Time_Weeks`)
+VALUES ('Standard Literature', 8),
+       ('Course Literature', 4),
+       ('Reference Literature', 0),
+       ('DVD', 2);
 
 CREATE TABLE `Item` (
-  `Item_ID` INT AUTO_INCREMENT,
+  `Item_ID` INT AUTO_INCREMENT NOT NULL,
   `Title` VARCHAR(255) NOT NULL,
-  `ISBN` VARCHAR(13) UNIQUE,
-  `Barcode` VARCHAR(255),
+  `ISBN` VARCHAR(13) NOT NULL,
+  `Barcode` VARCHAR(255) UNIQUE NOT NULL,
   `Location` VARCHAR(255),
   `Description` TEXT,
-  `Type_ID` INT,
+  `Item_Type_ID` INT NOT NULL,
+  `Item_Status` ENUM ('Available', 'Reserved', 'Checked Out', 'Overdue') NOT NULL,
   PRIMARY KEY (`Item_ID`),
-  FOREIGN KEY (`Type_ID`) REFERENCES `Item_Type`(`Type_ID`)
-);
-
-CREATE TABLE `Book` (
-  `Book_ID` INT PRIMARY KEY,
-  FOREIGN KEY (`Book_ID`) REFERENCES `Item`(`Item_ID`)
-);
-
-CREATE TABLE `DVD` (
-  `DVD_ID` INT PRIMARY KEY,
-  FOREIGN KEY (`DVD_ID`) REFERENCES `Item`(`Item_ID`)
-);
+  FOREIGN KEY (`Item_Type_ID`) REFERENCES `Item_Type`(`Item_Type_ID`)
+ );

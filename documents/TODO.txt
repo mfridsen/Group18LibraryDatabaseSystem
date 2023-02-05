@@ -4,6 +4,10 @@
 //TODO Fill with Test Data
     //TODO Users
     //TODO Items
+        //TODO 10 different books, with varying amount of copies each
+    //TODO Author
+    //TODO Publisher
+    //TODO Classification
 
 //TODO Create Routines for SCRUB etc
 
