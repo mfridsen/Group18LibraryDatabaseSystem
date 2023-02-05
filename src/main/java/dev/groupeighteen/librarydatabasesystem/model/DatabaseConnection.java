@@ -155,14 +155,52 @@ public class DatabaseConnection {
             e.printStackTrace();
             BookBorrowingDataBaseSystem.exit("Error executing SQL command: " + command, 1);
         }
-        System.out.println("Command successful.");
+        System.out.println("Command successful.\n");
+    }
+
+    //TODO correct this
+    /**
+     * This method takes two arguments: a Statement object, which is used to execute SQL statements,
+     * and a String that represents the name of the table you want to retrieve the data from.
+     * The method uses the executeQuery method of the Statement object to execute the
+     * SELECT * FROM <tableName> statement and retrieve the result in a ResultSet object.
+     *
+     * Then, it uses the ResultSetMetaData object to get information about the columns in the result set,
+     * and the number of columns. The method loops through the rows in the result set using a while loop,
+     * and for each row, it loops through the columns and retrieves the data using the rs.getString(i) method,
+     * where i is the column index. Finally, it prints the data for each column separated by a space,
+     * and goes to the next line for each row.
+     */
+    public static void printAllData(String tableName) {
+        System.out.println("Printing all data found in table: " + tableName);
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery("SELECT * FROM " + tableName);
+            ResultSetMetaData rsmd = rs.getMetaData();
+            int columnsNumber = rsmd.getColumnCount();
+            while (rs.next()) {
+                for (int i = 1; i <= columnsNumber; i++) {
+                    System.out.print(rs.getString(i) + " ");
+                }
+                System.out.println();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            BookBorrowingDataBaseSystem.exit("ERROR: printAllData: for table: " + tableName, 1);
+        }
+        System.out.println();
     }
 
     /**
-     * A simple method which reads the contents of a file, and executes any SQL commands it finds in that file
+     * A simple method which reads the contents of a file, and executes any SQL commands found in that file.
      * @param filePath the path of the file
      */
     public static void executeSqlCommandsFromFile(String filePath) {
+        if (filePath.length() == 0) {
+            System.out.println("ERROR: executeSqlCommandsFromFile: No filepath.");
+            return;
+        }
+
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             String line;
             StringBuilder commandBuilder = new StringBuilder();

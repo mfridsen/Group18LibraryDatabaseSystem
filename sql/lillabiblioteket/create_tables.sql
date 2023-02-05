@@ -12,7 +12,7 @@ CREATE TABLE `Publisher` (
   `Zip_Code` VARCHAR(255),
   `Country` VARCHAR(255),
   `Phone_Num` VARCHAR(255),
-  `E-Mail` VARCHAR(255) UNIQUE,
+  `Mail` VARCHAR(255) UNIQUE,
   `Website` VARCHAR(255),
   `Date_Founded` DATE,
   `Description` TEXT
@@ -26,7 +26,7 @@ CREATE TABLE `User` (
     `First_Name` VARCHAR(255) NOT NULL,
     `Last_Name` VARCHAR(255) NOT NULL,
     `Phone_Num` VARCHAR(255) NOT NULL,
-    `E-Mail` VARCHAR(255) NOT NULL,
+    `Mail` VARCHAR(255) NOT NULL,
     `Street_Num` INT,
     `Street_Name` VARCHAR(255) ,
     `Town` VARCHAR(255) ,
