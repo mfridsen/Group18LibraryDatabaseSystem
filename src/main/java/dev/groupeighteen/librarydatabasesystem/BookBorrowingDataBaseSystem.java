@@ -109,6 +109,9 @@ public class BookBorrowingDataBaseSystem {
         DatabaseHandler.printAllData(connection, "");
     }
 
+    /**
+     * Exits the program with status.
+     */
     public static void exit(int status) {
         if (connection == null) { //Should always close connection to the database after use
             DatabaseConnection.closeConnectionToDatabase();
@@ -116,6 +119,9 @@ public class BookBorrowingDataBaseSystem {
         System.exit(status);
     }
 
+    /**
+     * Exits the program with status and message.
+     */
     public static void exit(String errorMsg, int status) {
         if (connection == null) { //Should always close connection to the database after use
             DatabaseConnection.closeConnectionToDatabase();

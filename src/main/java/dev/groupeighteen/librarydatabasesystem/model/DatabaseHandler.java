@@ -30,6 +30,9 @@ public class DatabaseHandler {
             while (resultSet.next()) {
                 System.out.println(resultSet.getString(1));
             }
+
+            statement.close(); //Always close statements after use
+            resultSet.close(); //Always close result sets after use
         } catch (SQLException e) {
             e.printStackTrace();
             BookBorrowingDataBaseSystem.exit("Couldn't perform query: " + query, 1);
@@ -90,6 +93,9 @@ public class DatabaseHandler {
                 }
                 System.out.println();
             }
+
+            statement.close(); //Always close statements after use
+            rs.close(); //Always close result sets after use
         } catch (SQLException e) {
             e.printStackTrace();
             BookBorrowingDataBaseSystem.exit("ERROR: printAllData: for table: " + tableName, 1);
