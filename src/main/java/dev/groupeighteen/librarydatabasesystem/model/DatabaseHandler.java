@@ -54,7 +54,7 @@ public class DatabaseHandler {
         try {
             statement = connection.createStatement();
             statement.execute(command);
-            statement.close();
+            statement.close(); //Always close statements after use
         } catch (SQLException e) {
             e.printStackTrace();
             BookBorrowingDataBaseSystem.exit("Error executing SQL command: " + command, 1);
