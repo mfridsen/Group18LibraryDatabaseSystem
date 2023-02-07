@@ -1,61 +1,29 @@
-books table: This table will store information about books,
-such as the title,
-ISBN,
-publication date,
-number of pages,
-and an image of the cover.
-It should also have a foreign key linking it to the authors table, as a book can have multiple authors.
+----------------------------------------------------INDEXES-------------------------------------------------------------
 
-DVDS
-dvds table: This table will store information about DVDs,
-such as the title,
-ISBN,
-release date,
-runtime,
-and an image of the cover.
-It should also have a foreign key linking it to the genres table, as a DVD can belong to multiple genres.
+In the context of databases, indexes are data structures that are used to improve the performance of database queries.
+They provide a way to quickly look up and retrieve data based on one or more columns, without having to scan the
+entire table. An index works like an inverted index in a library, where you can quickly find a book based on its
+author or title, without having to go through the entire collection.
 
-AUTHORS
-For a library or bookstore database, the following information about authors may be relevant to have:
-Name: The author's full name, including first and last name.
-Birthdate: The author's birthdate.
-Description: A brief biography of the author, including their background, education, and notable works.
+In a relational database, an index is a separate data structure that is stored along with the table.
+When a query is executed, the database engine can use the index to quickly find the rows that match the conditions
+specified in the query, without having to scan the entire table. This can significantly improve the performance of
+queries, especially when working with large tables.
 
+There are different types of indexes, including b-tree indexes, hash indexes, and bitmap indexes,
+each with its own strengths and weaknesses. The choice of which index to use depends on the data in the table and the
+types of queries that will be run against it.
 
-PUBLISHERS
-For a library or bookstore database, the following information about publishers may be relevant to have:
-Name: The name of the publisher, for example, "Penguin Books" or "HarperCollins Publishers".
-Address: The physical address of the publisher, including the street, city, state/province, and country.
-Phone number: The publisher's contact phone number.
-Email: The publisher's contact email address.
-Website: The publisher's website URL.
-Description: A brief description of the publisher, such as the types of books they publish, the number of books they
-produce each year, the history of the publisher, and so on.
-Founded date: The date the publisher was founded.
+In a database, an index is a data structure that allows for efficient and fast search of records in a table.
+It's like a book index, which lists the topics in a book and their page numbers, allowing you to quickly find the
+information you're looking for.
 
+In a database, the index is a separate data structure, usually a B-tree or hash table, that contains a mapping of the
+values in specific columns of a table to the corresponding rows in the table. When a query is executed,
+the database engine can use the index to quickly locate the rows that match the search criteria, rather than
+having to scan the entire table. This can significantly improve the performance of queries, especially on large tables.
 
-PATRONS
-patrons table: This table will store information about library patrons,
-such as the name,
-address,
-phone number,
-and email address.
-
-CHECKOUTS
-checkouts table: This table will store information about items that have been checked out,
-such as the patron ID,
-the item ID (book or DVD),
-the checkout date,
-and the due date.
-
-GENRES
-genres table: This table will store information about genres,
-such as the name
-and a brief description
-
-REVIEWS
-reviews table: This table will store information about reviews,
-such as the patron ID,
-the item ID (book or DVD),
-the review text,
-and rating.
+Indexes can be created on one or more columns of a table, and the database engine can use multiple indexes to
+resolve a query. However, it's important to note that indexes also take up disk space and can impact the
+performance of insert, update, and delete operations, as the indexes need to be updated whenever the data changes.
+So, it's important to carefully consider which columns to index and how many indexes to create.

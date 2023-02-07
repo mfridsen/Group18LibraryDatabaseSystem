@@ -8,7 +8,7 @@ import java.sql.Connection;
 public class BookBorrowingDataBaseSystem {
     private static Connection connection;
 
-    //Makes the code prettier
+    //Base tables
     private static final String publisherTestDataPath =
             "sql/lillabiblioteket/test_data/base_tables/publisher_test_data.sql";
     private static final String userTestDataPath =
@@ -19,6 +19,8 @@ public class BookBorrowingDataBaseSystem {
             "sql/lillabiblioteket/test_data/base_tables/item_test_data.sql";
     private static final String authorTestDataPath =
             "sql/lillabiblioteket/test_data/base_tables/author_test_data.sql";
+
+    //Join tables
     private static final String itemPublisherTestDataPath =
             "";
     private static final String itemAuthorTestDataPath =
