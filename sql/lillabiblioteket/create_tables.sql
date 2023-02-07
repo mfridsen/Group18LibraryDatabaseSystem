@@ -129,7 +129,7 @@ CREATE TABLE `Checkout` (
   `Checkout_Date` DATETIME NOT NULL,
   `Return_Date` DATE,
   `Fine` DECIMAL(10,2),
-  `Status` TINYINT,
+  `Status` ENUM ('Reserved', 'Checked Out', 'Overdue') NOT NULL,
   PRIMARY KEY (`Checkout_ID`),
   FOREIGN KEY (`Patron_ID`) REFERENCES `Patron`(`Patron_ID`),
   FOREIGN KEY (`Staff_ID`) REFERENCES `Staff`(`Staff_ID`)

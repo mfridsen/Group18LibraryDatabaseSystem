@@ -1,0 +1,19 @@
+------------------------------------------------------BRANCHES----------------------------------------------------------
+In Git, a branch is a separate line of development in a repository. Branches allow multiple people
+to work on different parts of a project simultaneously without interfering with each other.
+
+Each branch in Git has a unique name, and it refers to a specific commit in the repository.
+Commits in one branch do not affect the other branches, so each branch can evolve independently.
+When you create a new branch, it starts from the same point as the branch you created it from
+(known as the "base" branch). You can then make changes to your branch without affecting the base branch.
+
+You can switch between branches at any time, and Git will automatically change the files in your
+working directory to reflect the state of the branch you switched to.
+This makes it easy to switch between different parts of your project and keep your work organized.
+
+When you're ready to merge your changes from a branch back into the base branch,
+you can use the "merge" command in Git. This will combine the changes from the two branches into a single branch,
+and you can continue to work with the combined branch just like any other.
+
+In summary, Git branches allow you to maintain multiple lines of development in a single repository,
+and they provide a flexible and efficient way to manage and organize your code.
