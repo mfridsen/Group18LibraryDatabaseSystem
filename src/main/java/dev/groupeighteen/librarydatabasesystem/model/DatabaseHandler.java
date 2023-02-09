@@ -7,6 +7,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.*;
+import java.util.Date;
 
 /**
  * @author Mattias Fridsén
@@ -139,6 +140,67 @@ public class DatabaseHandler {
         } catch (IOException e) {
             e.printStackTrace();
             BookBorrowingDataBaseSystem.exit("Couldn't read file at path " + filePath, 1);
+        }
+    }
+
+
+    public void CreateStaff(Connection connection, int StaffID, Date dateHired, int staffTypeID) {
+        try {
+            // First, create the user in the User table using the CreateUser procedure
+            CallableStatement createUserStatement = connection.prepareCall("{ call CreateUser(?,?,?,?,?,?,?,?,?) }");
+            createUserStatement.setInt(1, StaffID);
+            createUserStatement.setString(2, "");  // User name
+            createUserStatement.setString(3, "");  // Password
+            createUserStatement.setString(4, "");  // First name
+            createUserStatement.setString(5, "");  // Last name
+            createUserStatement.setString(6, "");  // Phone number
+            createUserStatement.setString(7, "");  // Email
+            createUserStatement.setDate(8, (java.sql.Date) dateHired);
+            createUserStatement.setString(9, "Staff");  // User type
+            createUserStatement.execute();
+
+            // Then insert the staff specific information into the Staff table
+            String insertStaffSQL = "INSERT INTO Staff (Staff_ID, Date_Hired, Staff_Type_ID) VALUES (?, ?, ?)";
+            PreparedStatement insertStaffStatement = connection.prepareStatement(insertStaffSQL);
+            insertStaffStatement.setInt(1, StaffID);
+            insertStaffStatement.setDate(2, (java.sql.Date) dateHired);
+            insertStaffStatement.setInt(3, staffTypeID);
+            insertStaffStatement.executeUpdate();
+
+            createUserStatement.close();
+            insertStaffStatement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void CreatePatron(Connection connection, int PatronID, int patronTypeID, int itemsRented) throws SQLException {
+        try {
+            // First, create the user in the User table using the CreateUser procedure
+            CallableStatement createUserStatement = connection.prepareCall("{ call CreateUser(?,?,?,?,?,?,?,?,?) }");
+            createUserStatement.setInt(1, PatronID);
+            createUserStatement.setString(2, "");  // User name
+            createUserStatement.setString(3, "");  // Password
+            createUserStatement.setString(4, "");  // First name
+            createUserStatement.setString(5, "");  // Last name
+            createUserStatement.setString(6, "");  // Phone number
+            createUserStatement.setString(7, "");  // Email
+            createUserStatement.setDate(8, (java.sql.Date) new Date());  // Current date
+            createUserStatement.setString(9, "Patron");  // User type
+            createUserStatement.execute();
+
+            // Then insert the patron specific information into the Patron table
+            String insertPatronSQL = "INSERT INTO Patron (Patron_ID, Patron_Type_ID, Items_Rented) VALUES (?, ?, ?)";
+            PreparedStatement insertPatronStatement = connection.prepareStatement(insertPatronSQL);
+            insertPatronStatement.setInt(1, PatronID);
+            insertPatronStatement.setInt(2, patronTypeID);
+            insertPatronStatement.setInt(3, itemsRented);
+            insertPatronStatement.execute();
+
+            createUserStatement.close();
+            insertPatronStatement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 }

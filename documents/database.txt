@@ -1,5 +1,4 @@
 ----------------------------------------------------INDEXES-------------------------------------------------------------
-
 In the context of databases, indexes are data structures that are used to improve the performance of database queries.
 They provide a way to quickly look up and retrieve data based on one or more columns, without having to scan the
 entire table. An index works like an inverted index in a library, where you can quickly find a book based on its
@@ -27,3 +26,75 @@ Indexes can be created on one or more columns of a table, and the database engin
 resolve a query. However, it's important to note that indexes also take up disk space and can impact the
 performance of insert, update, and delete operations, as the indexes need to be updated whenever the data changes.
 So, it's important to carefully consider which columns to index and how many indexes to create.
+
+
+----------------------------------------------------DERIVED DATA--------------------------------------------------------
+In database context, "derived data" refers to information that is derived or calculated from existing data stored in
+the database. It is not stored directly in the database but is generated on demand through queries, views,
+or stored procedures. Derived data can be used to provide aggregated information, such as sums, averages, and counts,
+or to summarize and organize data in a way that is meaningful for a particular purpose. The derived data can be used to
+support business decisions, improve performance, or reduce the amount of data that needs to be stored in the database,
+among other things. However, it should be noted that derived data can become outdated if the underlying data changes,
+so it's important to have a mechanism in place to refresh it as needed.
+
+
+----------------------------------------------------GENERAL CONSTRAINTS-------------------------------------------------
+In database management, general constraints are rules and restrictions that must be followed by the data in a database.
+These constraints are used to maintain the integrity and accuracy of the data. Some common examples of general
+constraints include:
+
+Not Null constraint: Specifies that a column cannot contain a null value.
+
+Unique constraint: Ensures that the values in a column are unique and no duplicate values are allowed.
+
+Primary Key constraint: Specifies a unique identifier for each record in a table and ensures that the values in the
+primary key column are unique.
+
+Foreign Key constraint: Specifies a relationship between two tables by linking a column in one table to the primary
+key of another table.
+
+Check constraint: Specifies a condition that must be true for every row in a table.
+
+Default constraint: Specifies a default value for a column if no value is provided.
+
+Exclusion constraint: Specifies a condition that ensures that the values in a column do not overlap with other
+specified values.
+
+These constraints help ensure the integrity and consistency of the data in the database, and prevent data that does
+not meet the specified criteria from being entered or modified.
+
+A check constraint is a type of constraint in a database that is used to enforce business rules on the data in a table.
+The check constraint is a condition that must be true for every row in the table. For example, you might use a check
+constraint to ensure that the value in a "quantity" column is always greater than zero. If a user tries to insert a row
+with a quantity less than zero, the database will reject the insert and raise an error.
+
+A default constraint is a type of constraint that specifies a default value for a column. If a user inserts a row
+without providing a value for that column, the database will automatically insert the default value into the column.
+The default value is typically used to provide a default value for optional columns or for columns with a known
+default value.
+
+An exclusion constraint is a type of constraint that is used to enforce that the values in a column do not overlap with
+other specified values. For example, you might use an exclusion constraint to ensure that two people do not have the
+same office number, or to ensure that two people do not have the same phone number. An exclusion constraint is used
+to enforce unique values in a column and to prevent data integrity problems.
+
+
+----------------------------------------------------PROCEDURES----------------------------------------------------------
+SQL procedures, also known as stored procedures, are pre-compiled, reusable blocks of SQL code that can be called
+and executed from within a database management system (DBMS) or from other applications.
+Procedures allow developers to encapsulate complex, data-intensive logic into a single,
+self-contained unit that can be executed multiple times, making it easier to maintain and manage the code.
+
+A procedure consists of a series of SQL statements that are executed together. Procedures can contain variables,
+control structures (such as loops, if statements, etc.), and other programming constructs. They can also return values,
+perform complex calculations and transformations, and interact with other objects in the database,
+such as tables and other procedures.
+
+SQL procedures are stored within the database and are executed on the database server. When a procedure is executed,
+it is passed parameters and it can return a result set. The result set can be a single value or multiple rows of data,
+depending on the requirements of the procedure.
+
+To create a procedure in SQL, you use the CREATE PROCEDURE statement. The syntax for this statement varies between
+different relational database management systems (RDBMS), but the basic structure is the same.
+
+
