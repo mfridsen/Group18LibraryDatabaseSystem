@@ -1,24 +1,20 @@
 --min rutin
+--lagt till error medelanden så man vet vad som gick fel när man kollar hur databasen fungerar
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
 */Kod som kollar hur många lån kunden har beroende på vad det är för kund*/
 CREATE DEFINER=`root`@`localhost` PROCEDURE `new_procedure_kollarhurmångaböckerdelånat`(in kundnr int,IN staffnr INT,IN bokid int)
 BEGIN
-DECLARE EXIT HANDLER FOR SQLSTATE '45000';
-BEGIN
-    SET MYSQL_ERRNO = 1644
-        MESSAGE_TEXT = 'för många böcker';
-    END;
 DECLARE ANTALLÅN int;
 DECLARE MAXBÖCKER int;
 DECLARE lånetid int;
 
 SET ANTALLÅN = (SELECT Items_Rented FROM Patron JOIN Patron_Type ON Patron.Patron_Type_ID = Patron_Type.Patron_Type_ID WHERE Patron_ID = kundnr
 GROUP BY Patron_ID);
-/*kollar hur många lån kunden har*/
+/*kollar hur många lån kunden har. Har varit finare om 'ANTALLÅN' var en funktion man tillkalla*/
 
 SET MAXBÖCKER = (SELECT Max_Items FROM Patron_Type JOIN Patron ON Patron_Type.Patron_Type_ID = Patron.Patron_Type_ID WHERE Patron_ID = kundnr
 GROUP BY Patron_ID);
-/* kollar max antallet lån en kund får ha beroende på vad det är för kund*/
+/* kollar max antallet lån en kund får ha beroende på vad det är för kund. Samma sak här, finare med funktion*/
 
 SET lånetid = (SELECT Rent_Time_Weeks FROM Item WHERE Item_ID = bokid);
 
