@@ -12,6 +12,8 @@
 //TODO Create Routines for SCRUB etc
 
 //TODO Create Triggers for DB
+    //reduce amount of current loans for patron upon return of item
+    //
 
 //TODO Create CLI to access and manipulate database
 
