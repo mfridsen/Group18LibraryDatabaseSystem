@@ -1,7 +1,8 @@
 --min rutin
 --lagt till error medelanden så man vet vad som gick fel när man kollar hur databasen fungerar
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
-*/Kod som kollar hur många lån kunden har beroende på vad det är för kund*/
+*/Kod som kollar hur många lån kunden har beroende på vad det är för kund, samt lägger automatiskt till 4 eller 8
+veckor av lånetid beroende på vad det är för bok kunden lånar*/
 CREATE DEFINER=`root`@`localhost` PROCEDURE `new_procedure_kollarhurmångaböckerdelånat`(in kundnr int,IN staffnr INT,IN bokid int)
 BEGIN
 DECLARE ANTALLÅN int;
@@ -84,7 +85,7 @@ END
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-/*--trigger på “Item_Checkout” som endast tillåter låna ut så många böcker*/
+-- trigger på Item_Checkout som ser till att vi inte kan låna ut fler kopior av en bok än vad vi har i biblioteket
 CREATE DEFINER = CURRENT_USER TRIGGER `sys`.`Item_Checkout_BEFORE_INSERT_Antal_Böcker_Kvar` BEFORE INSERT ON `Item_Checkout` FOR EACH ROW
 BEGIN
 DECLARE HEJ int;
@@ -101,7 +102,7 @@ END
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-
+--hittar namnet på den senaste hyrda boken och sedan returnar hur många aktiva lån vi har på kopior av den boken
 CREATE DEFINER=`root`@`localhost` FUNCTION `new_function_hitta_namn_på_senast_insatta`(hej int) RETURNS int
     DETERMINISTIC
 BEGIN
