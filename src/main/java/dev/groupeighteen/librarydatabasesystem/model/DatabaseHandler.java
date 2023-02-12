@@ -15,6 +15,7 @@ import java.util.Date;
  * @date 2/5/2023
  */
 public class DatabaseHandler {
+    private static Connection connection;
     /**
      * Attempts to execute a SQL query.
      */

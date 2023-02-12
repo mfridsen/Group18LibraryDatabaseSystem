@@ -127,7 +127,6 @@ CREATE TABLE `Checkout` (
   `Patron_ID` INT,
   `Staff_ID` INT,
   `Checkout_Date` DATETIME NOT NULL,
-  `Return_Date` DATE,
   `Fine` DECIMAL(10,2),
   PRIMARY KEY (`Checkout_ID`),
   FOREIGN KEY (`Patron_ID`) REFERENCES `Patron`(`Patron_ID`),
