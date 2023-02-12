@@ -1,24 +1,27 @@
 --min rutin
+--lagt till error medelanden så man vet vad som gick fel när man kollar hur databasen fungerar
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
 */Kod som kollar hur många lån kunden har beroende på vad det är för kund*/
 CREATE DEFINER=`root`@`localhost` PROCEDURE `new_procedure_kollarhurmångaböckerdelånat`(in kundnr int,IN staffnr INT,IN bokid int)
 BEGIN
-
 DECLARE ANTALLÅN int;
 DECLARE MAXBÖCKER int;
 DECLARE lånetid int;
 
 SET ANTALLÅN = (SELECT Items_Rented FROM Patron JOIN Patron_Type ON Patron.Patron_Type_ID = Patron_Type.Patron_Type_ID WHERE Patron_ID = kundnr
 GROUP BY Patron_ID);
-/*kollar hur många lån kunden har*/
+/*kollar hur många lån kunden har. Har varit finare om 'ANTALLÅN' var en funktion man tillkalla*/
 
 SET MAXBÖCKER = (SELECT Max_Items FROM Patron_Type JOIN Patron ON Patron_Type.Patron_Type_ID = Patron.Patron_Type_ID WHERE Patron_ID = kundnr
 GROUP BY Patron_ID);
-/* kollar max antallet lån en kund får ha beroende på vad det är för kund*/
+/* kollar max antallet lån en kund får ha beroende på vad det är för kund. Samma sak här, finare med funktion*/
 
 SET lånetid = (SELECT Rent_Time_Weeks FROM Item WHERE Item_ID = bokid);
 
-IF ANTALLÅN >= MAXBÖCKER THEN SIGNAL SQLSTATE '45000';
+IF ANTALLÅN >= MAXBÖCKER THEN
+    SIGNAL SQLSTATE '45000' SET
+    MYSQL_ERRNO = 1644,
+    MESSAGE_TEXT = 'Du Kan Inte Låna Mer';
 
 ELSE INSERT INTO Item_Checkout(Item_ID, Due_Date) VALUES (bokid, ADDDATE(CURRENT_DATE(),INTERVAL lånetid WEEK));
 INSERT INTO Checkout(Patron_ID, Staff_ID, Status) VALUES (kundnr, staffnr, 1);
@@ -54,7 +57,9 @@ CREATE DEFINER = CURRENT_USER TRIGGER `sys`.`Item_Checkout_BEFORE_INSERT_kollar_
 BEGIN
 IF NEW.Due_Date <= current_timestamp() THEN
 /*-- om "Due_Date" <= Nu, då får man inte låna eftersom boken är referensliteratur*/
-SIGNAL SQLSTATE '45000';
+	SIGNAL SQLSTATE '45000' SET
+		MYSQL_ERRNO = 1644,
+        MESSAGE_TEXT = 'ReferensLiteratur';
 END IF;
 END
 
@@ -80,18 +85,30 @@ END
 
 
 /*--trigger på “Item_Checkout” som endast tillåter låna ut så många böcker*/
+CREATE DEFINER = CURRENT_USER TRIGGER `sys`.`Item_Checkout_BEFORE_INSERT_Antal_Böcker_Kvar` BEFORE INSERT ON `Item_Checkout` FOR EACH ROW
 BEGIN
 DECLARE HEJ int;
 DECLARE HEJSAN INT;
 SET HEJSAN = new_function_också_försök_till_endast_låna_ut_aaa_du_fattar(NEW.Item_ID);
-*/--sätter hejsan till värdet av functionen som returnerar hur många böcker vi har som heter "x"
---"NEW.Item_ID" är det senaste tillsatta värdet i tabellen*/
-SET HEJ = new_function_hitta_namn_på_senast_insatta(NEW.Item_ID)
-/*--Variabeln hej = hur många aktiva lån vi har*/
+SET HEJ = new_function_hitta_namn_på_senast_insatta(NEW.Item_ID);
 IF HEJ >= HEJSAN THEN
-SIGNAL SQLSTATE '45000';
+SIGNAL SQLSTATE '45000' SET
+		MYSQL_ERRNO = 1644,
+        MESSAGE_TEXT = 'Slut På Den Boken';
 END IF;
 END
 
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+CREATE DEFINER=`root`@`localhost` FUNCTION `new_function_hitta_namn_på_senast_insatta`(hej int) RETURNS int
+    DETERMINISTIC
+BEGIN
+DECLARE APA VARCHAR(100);
+DECLARE ORANGUTANG int;
+SET APA = (SELECT Title FROM Item WHERE Item_ID = hej);
+SET ORANGUTANG = (SELECT COUNT(Title)FROM Item_Checkout JOIN Item ON Item_Checkout.Item_ID = Item.Item_ID
+JOIN Checkout ON Item_Checkout.Checkout_ID = Checkout.Checkout_ID WHERE Title = APA AND Status = 1);
+RETURN ORANGUTANG;
+END
