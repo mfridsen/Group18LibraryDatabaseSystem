@@ -1,4 +1,4 @@
-package dev.groupeighteen.librarydatabasesystem.model;
+package dev.groupeighteen.librarydatabasesystem.model.item;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

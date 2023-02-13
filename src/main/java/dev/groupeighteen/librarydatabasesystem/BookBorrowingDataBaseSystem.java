@@ -1,7 +1,9 @@
 package dev.groupeighteen.librarydatabasesystem;
 
-import dev.groupeighteen.librarydatabasesystem.model.DatabaseConnection;
-import dev.groupeighteen.librarydatabasesystem.model.DatabaseHandler;
+import dev.groupeighteen.librarydatabasesystem.model.database.DatabaseConnection;
+import dev.groupeighteen.librarydatabasesystem.model.database.DatabaseHandler;
+import dev.groupeighteen.librarydatabasesystem.model.user.Student;
+import dev.groupeighteen.librarydatabasesystem.model.user.User;
 
 import java.sql.Connection;
 
@@ -31,6 +33,7 @@ public class BookBorrowingDataBaseSystem {
             "";
     
     public static void main(String[] args) {
+        Student johanObject = new Student(1, "johan", "lund");
         //Connect
         DatabaseConnection.connectToMySQLServer();
         connection = DatabaseConnection.getConnection();
