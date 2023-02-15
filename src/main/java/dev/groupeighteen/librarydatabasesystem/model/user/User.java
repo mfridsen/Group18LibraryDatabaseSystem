@@ -8,6 +8,8 @@ import java.util.Date;
  * @date 2023-02-02
  */
 public abstract class User {
+    protected static int nextUserID = 0; //SQL likes to begin at 1. First User will have ID of 0 + 1 = 1
+
     protected final int userID;
     protected String userName;
     protected String password;
@@ -17,11 +19,18 @@ public abstract class User {
     protected String eMail;
     protected Date dateCreated;
 
-    public User(int userID, String userName, String password) {
-        this.userID = userID;
+    public User(String userName, String password) {
+        this.userID = getNextUserID();
         this.userName = userName;
         this.password = password;
     }
+
+    private static int getNextUserID() {
+        nextUserID++;
+        return nextUserID;
+    }
+
+    /*********************************** Getters and Setters are self-explanatory. ************************************/
 
 
     public int getUserID() {

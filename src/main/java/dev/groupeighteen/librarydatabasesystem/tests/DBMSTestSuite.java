@@ -1,5 +1,6 @@
 package dev.groupeighteen.librarydatabasesystem.tests;
 
+import dev.groupeighteen.librarydatabasesystem.tests.modeltests.UserTest;
 import dev.groupeighteen.librarydatabasesystem.tests.viewtests.OutputHandlerTest;
 import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;
@@ -16,6 +17,7 @@ import org.junit.runners.Suite;
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
         //Model tests
+        UserTest.class,
 
         //View tests
         OutputHandlerTest.class,

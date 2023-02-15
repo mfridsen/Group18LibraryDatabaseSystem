@@ -11,6 +11,9 @@ import java.sql.SQLException;
  */
 public class Item {
 
+    public Item() {
+    }
+
     /*
     public void updateItemStatus(int itemID, String newStatus) {
         String updateSQL = "UPDATE Item SET Item_Status = ? WHERE Item_ID = ?";
