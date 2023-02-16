@@ -10,14 +10,14 @@ import java.time.LocalDateTime;
 public class Checkout {
     private static int nextCheckoutID = 0; //SQL likes to begin at 1. First Checkout will have ID of 0 + 1 = 1
 
-    protected final int checkoutID;
-    protected final int patronID;
-    protected final int itemID;
-    protected final int staffID;
-    protected final LocalDateTime checkoutDate;
-    protected final LocalDateTime returnDate;
-    protected float fine;
-    protected short status;
+    private final int checkoutID;
+    private final int patronID;
+    private final int itemID;
+    private final int staffID;
+    private final LocalDateTime checkoutDate;
+    private final LocalDateTime returnDate;
+    private float fine;
+    private short status;
 
     /**
      * Checkout constructor. Creates a new Checkout with patronID pID, itemID iID and staffID sID.
@@ -40,6 +40,10 @@ public class Checkout {
         this.fine = 0;
         //TODO change statuses, probably to ENUMS
         this.status = 1;
+    }
+
+    public Checkout(Reservation res, int sID) {
+        this(res.getPatronID(), res.getItemID(), sID);
     }
 
     /**
