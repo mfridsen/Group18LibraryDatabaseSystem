@@ -1,4 +1,4 @@
-package dev.groupeighteen.librarydatabasesystem.model;
+package dev.groupeighteen.librarydatabasesystem.model.item;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,7 +9,10 @@ import java.sql.SQLException;
  * @project Group18LibraryDatabaseSystem
  * @date 2/2/2023
  */
-public class Item {
+public abstract class Item {
+
+    public Item() {
+    }
 
     /*
     public void updateItemStatus(int itemID, String newStatus) {

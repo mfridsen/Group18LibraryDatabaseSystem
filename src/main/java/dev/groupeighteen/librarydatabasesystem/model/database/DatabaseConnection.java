@@ -1,4 +1,4 @@
-package dev.groupeighteen.librarydatabasesystem.model;
+package dev.groupeighteen.librarydatabasesystem.model.database;
 
 import dev.groupeighteen.librarydatabasesystem.BookBorrowingDataBaseSystem;
 
@@ -28,7 +28,6 @@ import java.sql.*;
  */
 public class DatabaseConnection {
     private static Connection connection = null;
-
     /**
      This method connects the Java application to a specific database.
      It loads the JDBC driver, and then establishes a connection to the database
