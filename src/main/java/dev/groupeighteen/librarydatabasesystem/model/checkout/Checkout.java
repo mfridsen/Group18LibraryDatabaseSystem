@@ -1,5 +1,6 @@
 package dev.groupeighteen.librarydatabasesystem.model.checkout;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 /**
@@ -9,13 +10,14 @@ import java.time.LocalDateTime;
  */
 public class Checkout {
     private static int nextCheckoutID = 0; //SQL likes to begin at 1. First Checkout will have ID of 0 + 1 = 1
+    public static final int DVD_RETURN_TIME = 14;
 
     private final int checkoutID;
     private final int patronID;
     private final int itemID;
     private final int staffID;
-    private final LocalDateTime checkoutDate;
-    private final LocalDateTime returnDate;
+    private final LocalDate checkoutDate;
+    private final LocalDate returnDate;
     private float fine;
     private short status;
 
@@ -34,9 +36,10 @@ public class Checkout {
         this.patronID = pID;
         this.itemID = iID;
         this.staffID = sID;
-        this.checkoutDate = LocalDateTime.now();
+        this.checkoutDate = LocalDate.now();
         //TODO returnDate needs to depend on the item type
-        this.returnDate = checkoutDate.plusDays(14);
+        this.returnDate = checkoutDate.plusDays(DVD_RETURN_TIME);
+        //TODO check this
         this.fine = 0;
         //TODO change statuses, probably to ENUMS
         this.status = 1;
@@ -81,11 +84,11 @@ public class Checkout {
         return staffID;
     }
 
-    public LocalDateTime getCheckoutDate() {
+    public LocalDate getCheckoutDate() {
         return checkoutDate;
     }
 
-    public LocalDateTime getReturnDate() {
+    public LocalDate getReturnDate() {
         return returnDate;
     }
 
