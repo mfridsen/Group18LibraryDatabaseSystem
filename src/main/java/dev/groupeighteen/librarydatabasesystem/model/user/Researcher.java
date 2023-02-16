@@ -6,8 +6,8 @@ package dev.groupeighteen.librarydatabasesystem.model.user;
  * @date 2/13/2023
  */
 public class Researcher extends Patron {
-    public Researcher(int userID, String userName, String password) {
-        super(userID, userName, password, 20);
+    public Researcher(String userName, String password) {
+        super(userName, password, 20);
     }
 
 }

@@ -33,7 +33,6 @@ public class BookBorrowingDataBaseSystem {
             "";
     
     public static void main(String[] args) {
-        Student johanObject = new Student(1, "johan", "lund");
         //Connect
         DatabaseConnection.connectToMySQLServer();
         connection = DatabaseConnection.getConnection();

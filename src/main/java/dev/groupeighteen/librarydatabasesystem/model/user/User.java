@@ -19,14 +19,32 @@ public abstract class User {
     protected String eMail;
     protected Date dateCreated;
 
-    public User(String userName, String password) {
-        this.userID = getNextUserID();
-        this.userName = userName;
-        this.password = password;
+    /**
+     * User constructor. Creates a new User with userName uName and password pWord.
+     * Calls nextUserID() to assign an auto-incremented userID to the User.
+     * @param uName the userName of the User.
+     * @param pWord the password of the User.
+     */
+    public User(String uName, String pWord) {
+        this.userID = nextUserID(); //AUTO_INCREMENT in SQL
+        this.userName = uName;
+        this.password = pWord;
     }
 
-    private static int getNextUserID() {
-        nextUserID++;
+    /**
+     * Increments and returns the class variable nextUserID.
+     * @return the new, incremented userID.
+     */
+    protected static int nextUserID() {
+        nextUserID++; //SQL likes to begin at 1
+        return nextUserID;
+    }
+
+    /**
+     * Returns the current value of nextUserID.
+     * @return value of nextUserID.
+     */
+    public static int getNextUserID() {
         return nextUserID;
     }
 

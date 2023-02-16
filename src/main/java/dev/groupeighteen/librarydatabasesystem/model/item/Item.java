@@ -9,7 +9,7 @@ import java.sql.SQLException;
  * @project Group18LibraryDatabaseSystem
  * @date 2/2/2023
  */
-public class Item {
+public abstract class Item {
 
     public Item() {
     }

@@ -1,6 +1,4 @@
-package dev.groupeighteen.librarydatabasesystem.tests.modeltests;
-
-import dev.groupeighteen.librarydatabasesystem.model.user.User;
+package dev.groupeighteen.librarydatabasesystem.model.user;
 
 import java.util.ArrayList;
 
@@ -94,10 +92,11 @@ public class UserHandler {
     }
 
 
-
-
-
-    //TODO COMMENT THESE TWO
+    /**
+     * Returns the password for User with userID uID, if such a User exists in users.
+     * @param uID the userID of the User.
+     * @return the password if the User is found, otherwise null.
+     */
     public static String getPassword(int uID) {
         if (uID <= 0) {
             System.out.println("ERROR: UserHandler.getPassword: uID given is <= 0");
@@ -112,10 +111,15 @@ public class UserHandler {
         return null;
     }
 
+    /**
+     * Returns the password for User with userName uName, if such a User exists in users.
+     * @param uName the userName of the User.
+     * @return the password if the User is found, otherwise null.
+     */
     public static String getPassword(String uName) {
         for (User user : users) {
             if (user.getUserName().equals(uName)) {
-                return user.getUserName();
+                return user.getPassword();
             }
         }
         //User with userName uName doesn't exist in users
