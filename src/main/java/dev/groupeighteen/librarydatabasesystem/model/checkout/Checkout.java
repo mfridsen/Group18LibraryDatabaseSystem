@@ -1,7 +1,6 @@
 package dev.groupeighteen.librarydatabasesystem.model.checkout;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 /**
  * @author Mattias Fridsén, Johan Lund

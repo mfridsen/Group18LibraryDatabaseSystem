@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import java.time.LocalDate;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.Assert.assertEquals;
 
 /**
  * @author Mattias Fridsén, Johan Lund
@@ -31,7 +31,7 @@ public class CheckoutTest {
         System.out.println("Checking returnDate, should be " + expectedReturnDate + ": " + c.getReturnDate());
         assertEquals(expectedReturnDate, c.getReturnDate());
         System.out.println("Checking fine, should be 0.0: " + c.getFine());
-        assertEquals(0.0, c.getFine());
+        assertEquals(0, c.getFine(), 0);
         System.out.println("Checking status, should be 1: " + c.getStatus());
         assertEquals(1, c.getStatus());
     }
