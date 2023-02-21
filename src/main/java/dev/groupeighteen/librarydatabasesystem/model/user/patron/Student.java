@@ -1,4 +1,4 @@
-package dev.groupeighteen.librarydatabasesystem.model.user;
+package dev.groupeighteen.librarydatabasesystem.model.user.patron;
 
 /**
  * @author Mattias Fridsén, Johan Lund

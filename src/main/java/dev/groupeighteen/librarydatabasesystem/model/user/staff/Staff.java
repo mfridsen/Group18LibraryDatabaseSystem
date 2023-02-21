@@ -1,4 +1,6 @@
-package dev.groupeighteen.librarydatabasesystem.model.user;
+package dev.groupeighteen.librarydatabasesystem.model.user.staff;
+
+import dev.groupeighteen.librarydatabasesystem.model.user.User;
 
 import java.time.LocalDateTime;
 

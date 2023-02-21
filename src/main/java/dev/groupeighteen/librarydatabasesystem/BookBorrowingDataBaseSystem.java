@@ -2,8 +2,6 @@ package dev.groupeighteen.librarydatabasesystem;
 
 import dev.groupeighteen.librarydatabasesystem.model.database.DatabaseConnection;
 import dev.groupeighteen.librarydatabasesystem.model.database.DatabaseHandler;
-import dev.groupeighteen.librarydatabasesystem.model.user.Student;
-import dev.groupeighteen.librarydatabasesystem.model.user.User;
 
 import java.sql.Connection;
 
