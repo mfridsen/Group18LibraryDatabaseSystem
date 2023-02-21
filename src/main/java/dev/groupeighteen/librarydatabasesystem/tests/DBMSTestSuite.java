@@ -1,5 +1,6 @@
 package dev.groupeighteen.librarydatabasesystem.tests;
 
+import dev.groupeighteen.librarydatabasesystem.tests.modeltests.CheckoutTest;
 import dev.groupeighteen.librarydatabasesystem.tests.modeltests.UserTest;
 import dev.groupeighteen.librarydatabasesystem.tests.viewtests.OutputHandlerTest;
 import org.junit.runner.JUnitCore;
@@ -9,7 +10,7 @@ import org.junit.runner.notification.Failure;
 import org.junit.runners.Suite;
 
 /**
- * @author Mattias Fridsén
+ * @author Mattias Fridsén, Johan Lund
  * @project Group18LibraryDatabaseSystem
  * @date 2/2/2023
  */
@@ -18,7 +19,7 @@ import org.junit.runners.Suite;
 @Suite.SuiteClasses({
         //Model tests
         UserTest.class,
-
+        CheckoutTest.class,
         //View tests
         OutputHandlerTest.class,
         //Controller tests

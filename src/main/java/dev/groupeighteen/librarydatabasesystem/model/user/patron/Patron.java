@@ -1,8 +1,9 @@
-package dev.groupeighteen.librarydatabasesystem.model.user;
+package dev.groupeighteen.librarydatabasesystem.model.user.patron;
 
 import java.util.ArrayList;
 
 import dev.groupeighteen.librarydatabasesystem.model.item.Item;
+import dev.groupeighteen.librarydatabasesystem.model.user.User;
 
 /**
  * @author Mattias Fridsén, Johan Lund

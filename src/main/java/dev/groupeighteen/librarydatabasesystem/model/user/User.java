@@ -48,6 +48,14 @@ public abstract class User {
         return nextUserID;
     }
 
+    /**
+     * Method which is overridden in Admin to grant Admin access to do Admin stuff.
+     * @return always false for anything that isn't an Admin.
+     */
+    public boolean isAdmin() {
+        return false;
+    }
+
     /*********************************** Getters and Setters are self-explanatory. ************************************/
 
 
