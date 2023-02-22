@@ -5,6 +5,6 @@ package dev.groupeighteen.librarydatabasesystem.view.item;
  * @project Group18LibraryDatabaseSystem
  * @date 2023-02-22
  */
-public class ItemHandlerGUI {
-    // Handler class for CRUD based GUI operations.
+public class ItemUpdateGUI {
+    // Update class for CRUD based GUI operations.
 }

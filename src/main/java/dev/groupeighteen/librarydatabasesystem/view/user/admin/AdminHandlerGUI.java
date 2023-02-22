@@ -1,11 +1,10 @@
 package dev.groupeighteen.librarydatabasesystem.view.user.admin;
 
 /**
- * @author Mattias Fridsén
+ * @author Johan Lund, Mattias Fridsén, Jesper Truedsson, Henrik Ravnborg, Elmer Tallgren
  * @project Group18LibraryDatabaseSystem
- * @date 2/22/2023
+ * @date 2023-02-22
  */
-
 public class AdminHandlerGUI {
-    // This is the user interface that gives access to CRUD-operations
+    // Handler class for CRUD based GUI operations.
 }

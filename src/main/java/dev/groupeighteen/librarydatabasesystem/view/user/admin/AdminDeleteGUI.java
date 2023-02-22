@@ -1,11 +1,10 @@
 package dev.groupeighteen.librarydatabasesystem.view.user.admin;
 
 /**
- * @author Mattias Fridsén
+ * @author Johan Lund, Mattias Fridsén, Jesper Truedsson, Henrik Ravnborg, Elmer Tallgren
  * @project Group18LibraryDatabaseSystem
- * @date 2/22/2023
+ * @date 2023-02-22
  */
-
 public class AdminDeleteGUI {
-    // GUI for CRUD Delete operations
+    // Delete class for CRUD based GUI operations.
 }

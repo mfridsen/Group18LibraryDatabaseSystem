@@ -1,10 +1,10 @@
-package dev.groupeighteen.librarydatabasesystem.view.item;
+package dev.groupeighteen.librarydatabasesystem.view.user.patron;
 
 /**
  * @author Johan Lund, Mattias Fridsén, Jesper Truedsson, Henrik Ravnborg, Elmer Tallgren
  * @project Group18LibraryDatabaseSystem
  * @date 2023-02-22
  */
-public class ItemHandlerGUI {
-    // Handler class for CRUD based GUI operations.
+public class PatronReadGUI {
+    // Read class for CRUD based GUI operations.
 }

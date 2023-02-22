@@ -1,9 +1,10 @@
 package dev.groupeighteen.librarydatabasesystem.view.user.patron;
 
 /**
- * @author Mattias Fridsén
+ * @author Johan Lund, Mattias Fridsén, Jesper Truedsson, Henrik Ravnborg, Elmer Tallgren
  * @project Group18LibraryDatabaseSystem
- * @date 2/21/2023
+ * @date 2023-02-22
  */
 public class PatronHandlerGUI {
+    // Handler class for CRUD based GUI operations.
 }
