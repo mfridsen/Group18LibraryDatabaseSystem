@@ -1,4 +1,6 @@
-package dev.groupeighteen.librarydatabasesystem.model.user.staff;
+package dev.groupeighteen.librarydatabasesystem.model.user.staff.admin;
+
+import dev.groupeighteen.librarydatabasesystem.model.user.staff.Staff;
 
 /**
  * @author Mattias Fridsén, Johan Lund
