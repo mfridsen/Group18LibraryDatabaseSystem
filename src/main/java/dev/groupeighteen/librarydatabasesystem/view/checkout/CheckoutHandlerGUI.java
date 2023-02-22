@@ -1,9 +1,10 @@
 package dev.groupeighteen.librarydatabasesystem.view.checkout;
 
 /**
- * @author Mattias Fridsén
+ * @author Johan Lund
  * @project Group18LibraryDatabaseSystem
- * @date 2/21/2023
+ * @date 2023-02-22
  */
 public class CheckoutHandlerGUI {
+    // Handler class for CRUD based GUI operations.
 }

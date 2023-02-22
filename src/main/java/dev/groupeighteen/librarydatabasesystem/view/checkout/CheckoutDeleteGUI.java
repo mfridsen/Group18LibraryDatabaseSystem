@@ -1,4 +1,4 @@
-package dev.groupeighteen.librarydatabasesystem.view.item.checkout;
+package dev.groupeighteen.librarydatabasesystem.view.checkout;
 
 /**
  * @author Johan Lund
