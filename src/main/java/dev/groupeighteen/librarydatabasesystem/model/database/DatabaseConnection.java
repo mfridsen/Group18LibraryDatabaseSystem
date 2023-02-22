@@ -75,7 +75,7 @@ public class DatabaseConnection {
     public static void connectToMySQLServer() {
         String url = "jdbc:mysql://localhost:3306";
         String user = "root";
-        String password = "password";
+        String password = "Cats_Dogs_1997";
 
         try {
             // Load the JDBC driver
