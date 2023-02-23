@@ -1,7 +1,7 @@
 package dev.groupeighteen.librarydatabasesystem;
 
 import dev.groupeighteen.librarydatabasesystem.model.database.DatabaseConnection;
-import dev.groupeighteen.librarydatabasesystem.model.database.DatabaseHandler;
+import dev.groupeighteen.librarydatabasesystem.controller.database.DatabaseHandler;
 
 import java.sql.Connection;
 

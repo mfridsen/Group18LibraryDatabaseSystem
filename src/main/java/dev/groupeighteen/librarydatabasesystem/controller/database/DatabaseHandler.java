@@ -1,4 +1,4 @@
-package dev.groupeighteen.librarydatabasesystem.model.database;
+package dev.groupeighteen.librarydatabasesystem.controller.database;
 
 import dev.groupeighteen.librarydatabasesystem.BookBorrowingDataBaseSystem;
 
