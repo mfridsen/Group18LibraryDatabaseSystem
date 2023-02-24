@@ -1,8 +1,8 @@
 package dev.groupeighteen.librarydatabasesystem.tests.modeltests;
 
-import dev.groupeighteen.librarydatabasesystem.model.user.patron.Researcher;
-import dev.groupeighteen.librarydatabasesystem.model.user.patron.Student;
-import dev.groupeighteen.librarydatabasesystem.model.user.patron.Teacher;
+import dev.groupeighteen.librarydatabasesystem.application.model.user.patron.Researcher;
+import dev.groupeighteen.librarydatabasesystem.application.model.user.patron.Student;
+import dev.groupeighteen.librarydatabasesystem.application.model.user.patron.Teacher;
 import org.junit.Test;
 
 import static org.junit.Assert.*;

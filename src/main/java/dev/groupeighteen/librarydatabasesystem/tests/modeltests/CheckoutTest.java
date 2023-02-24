@@ -1,6 +1,6 @@
 package dev.groupeighteen.librarydatabasesystem.tests.modeltests;
 
-import dev.groupeighteen.librarydatabasesystem.model.checkout.Checkout;
+import dev.groupeighteen.librarydatabasesystem.application.model.checkout.Checkout;
 import org.junit.Test;
 
 import java.time.LocalDate;

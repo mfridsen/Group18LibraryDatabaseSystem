@@ -1,6 +1,6 @@
 package dev.groupeighteen.librarydatabasesystem.tests.viewtests;
 
-import dev.groupeighteen.librarydatabasesystem.view.OutputHandler;
+import dev.groupeighteen.librarydatabasesystem.application.view.OutputHandler;
 import org.junit.Test;
 import static org.junit.Assert.assertArrayEquals;
 import java.io.ByteArrayInputStream;
