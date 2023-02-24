@@ -13,25 +13,25 @@ public class Reservation {
     private final int itemID;
 
     public Reservation(int patronID, int itemID) {
-        this.reservationID = nextCheckoutID(); //AUTO_INCREMENT in SQL
+        this.reservationID = nextReservationID(); //AUTO_INCREMENT in SQL
         this.patronID = patronID;
         this.itemID = itemID;
     }
 
     /**
-     * Increments and returns the class variable nextCheckoutID.
+     * Increments and returns the class variable nextReservationID.
      * @return the new, incremented checkoutID.
      */
-    private static int nextCheckoutID() {
+    private static int nextReservationID() {
         nextReservationID++; //SQL likes to begin at 1
         return nextReservationID;
     }
 
     /**
-     * Returns the current value of nextCheckoutID.
-     * @return value of nextCheckoutID.
+     * Returns the current value of nextReservationID.
+     * @return value of nextReservationID.
      */
-    public static int getNextCheckoutID() {
+    public static int getNextReservationID() {
         return nextReservationID;
     }
 

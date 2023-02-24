@@ -1,6 +1,7 @@
 package dev.groupeighteen.librarydatabasesystem.tests;
 
 import dev.groupeighteen.librarydatabasesystem.tests.modeltests.CheckoutTest;
+import dev.groupeighteen.librarydatabasesystem.tests.modeltests.ReservationTest;
 import dev.groupeighteen.librarydatabasesystem.tests.modeltests.UserTest;
 import dev.groupeighteen.librarydatabasesystem.tests.viewtests.OutputHandlerTest;
 import org.junit.runner.JUnitCore;
@@ -20,6 +21,7 @@ import org.junit.runners.Suite;
         //Model tests
         UserTest.class,
         CheckoutTest.class,
+        ReservationTest.class,
         //View tests
         OutputHandlerTest.class,
         //Controller tests

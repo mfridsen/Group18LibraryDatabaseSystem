@@ -13,6 +13,17 @@ import static org.junit.Assert.assertEquals;
  * @date 2/15/2023
  */
 public class CheckoutTest {
+
+    private static final String checkoutTest = """
+               
+               ----------------------
+               Testing Checkout Class\s
+               ----------------------\s
+            """;
+
+    static {
+        System.out.println("\n" + checkoutTest);
+    }
     @Test
     public void testCreateCheckout(){
         LocalDate today = LocalDate.now();
