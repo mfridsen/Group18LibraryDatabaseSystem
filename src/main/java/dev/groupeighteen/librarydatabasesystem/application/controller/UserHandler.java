@@ -1,4 +1,6 @@
-package dev.groupeighteen.librarydatabasesystem.application.model.user;
+package dev.groupeighteen.librarydatabasesystem.application.controller;
+
+import dev.groupeighteen.librarydatabasesystem.application.model.user.User;
 
 import java.util.ArrayList;
 

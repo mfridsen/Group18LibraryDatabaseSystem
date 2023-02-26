@@ -6,7 +6,7 @@ package dev.groupeighteen.librarydatabasesystem.application.model.checkout;
  * @date 2/16/2023
  */
 public class Reservation {
-    private static int nextReservationID = 0; //SQL likes to begin at 1. First Checkout will have ID of 0 + 1 = 1
+    private static int nextReservationID = 0; //SQL likes to begin at 1. First Reservation will have ID of 0 + 1 = 1
 
     private final int reservationID;
     private final int patronID;
@@ -20,7 +20,7 @@ public class Reservation {
 
     /**
      * Increments and returns the class variable nextReservationID.
-     * @return the new, incremented checkoutID.
+     * @return the new, incremented nextReservationID.
      */
     private static int nextReservationID() {
         nextReservationID++; //SQL likes to begin at 1
